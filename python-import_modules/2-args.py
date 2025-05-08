@@ -4,7 +4,7 @@ import sys
 def main():
     args = sys.argv[1:]
     if len(args) == 0:
-        print("0 argument.")
+        print("0 arguments.")
     elif len(args) == 1:
         print("1 argument :")
         print("1: {}".format(args[0]))
