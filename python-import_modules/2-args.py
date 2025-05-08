@@ -2,16 +2,16 @@
 import sys
 
 def main():
-    args = sys.argv[1:]
-    if len(args) == 0:
+    argv = sys.argv[1:]
+    if len(argv) == 0:
         print("0 arguments.")
-    elif len(args) == 1:
+    elif len(argv) == 1:
         print("1 argument :")
-        print("1: {}".format(args[0]))
+        print("1: {}".format(argv[0]))
     else:
-        print("{} arguments:".format(len(args)))
-        for i, args in enumerate(args, start=1):
-            print("{}: {}".format(i, args))
+        print("{} arguments:".format(len(argv)))
+        for i, argv in enumerate(argv, start=1):
+            print("{}: {}".format(i, argv))
 
 if __name__ == "__main__":
     main()
