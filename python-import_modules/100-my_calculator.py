@@ -4,7 +4,7 @@ import sys
 
 if __name__ == "__main__":
     argv = sys.argv
-    if len(sys.argv) - 1 != 3:
+    if len(argv) - 1 != 3:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
 
@@ -23,6 +23,6 @@ if __name__ == "__main__":
     if operator not in operators:
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
-
+    
     result = operators[operator](a, b)
     print("{} {} {} = {}".format(a, operator, b, result))
