@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 result = ""
 for i in range(25, -1, -1):
     char = chr(97 + i)
