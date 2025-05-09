@@ -7,5 +7,4 @@ for i in range(25, -1, -1):
         result += char.upper()
     else:
         result += char
-
-print(result)
+print(result, end="")
