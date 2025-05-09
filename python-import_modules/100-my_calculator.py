@@ -11,7 +11,6 @@ if __name__ == "__main__":
     a = int(argv[1])
     operator = argv[2]
     b = int(argv[3])
-    result = (a, operator, b)
 
     operators = {
         '+': add,
@@ -23,6 +22,7 @@ if __name__ == "__main__":
     if operator not in operators:
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
-    
+
+    # Perform the operation
     result = operators[operator](a, b)
     print("{} {} {} = {}".format(a, operator, b, result))
