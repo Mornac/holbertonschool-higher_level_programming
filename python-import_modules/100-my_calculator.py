@@ -4,15 +4,12 @@ import sys
 
 if __name__ == "__main__":
     argv = sys.argv
-
     if len(argv) != 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
-
 a = int(argv[1])
 operator = argv[2]
 b = int(argv[3])
-
 if operator == '+':
     print("{} {} {} = {}".format(a, operator, b, add(a, b)))
 elif operator == '-':
