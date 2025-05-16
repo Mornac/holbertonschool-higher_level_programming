@@ -4,7 +4,6 @@
 The module provides a function that prints a sentence.
 
 first_name and last_name must be strings.
-Each row of the matrix must have the same size.
 """
 
 
