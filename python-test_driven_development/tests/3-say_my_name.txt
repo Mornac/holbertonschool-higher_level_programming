@@ -9,7 +9,7 @@ My name
     My name is John Doe
 
     >>> say_my_name("Alice")
-    My name is Alice 
+    My name is Alice
 
     >>> say_my_name(123, "Doe")
     Traceback (most recent call last):
