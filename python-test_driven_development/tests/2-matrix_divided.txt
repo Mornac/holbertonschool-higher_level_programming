@@ -66,3 +66,8 @@ Errors
     Traceback (most recent call last):
         ...
     TypeError: div must be a number
+
+    >>> matrix_divided([], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: Each row of the matrix must have the same size
