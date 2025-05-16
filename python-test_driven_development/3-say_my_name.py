@@ -10,7 +10,11 @@ Each row of the matrix must have the same size.
 
 def say_my_name(first_name, last_name=""):
     """
-    The function prints my name.
+    The function prints 'My name is <first_name> <last_name>.
+
+    Parameters:
+    first_name (str): first name
+    last_name (str): last name
     """
 
     if not isinstance(first_name, str):
