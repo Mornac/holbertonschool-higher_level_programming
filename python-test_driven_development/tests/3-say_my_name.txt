@@ -1,22 +1,39 @@
 >>> say_my_name = __import__('3-say_my_name').say_my_name
 
 My name
----------
+-------
 
 .. code-block:: python
 
-    >>> say_my_name("John", "Doe")
-    My name is John Doe
+    >>> say_my_name("Ingrid", "Mornac")
+    My name is Ingrid Mornac
 
-    >>> say_my_name("Alice")
-    My name is Alice
+    >>> say_my_name("Ingrid")
+    My name is Ingrid 
 
-    >>> say_my_name(123, "Doe")
+    
+
+Wrong Type
+------------
+
+.. code-block:: python
+
+    >>> say_my_name(None, "Mornac")
     Traceback (most recent call last):
         ...
     TypeError: first_name must be a string
 
-    >>> say_my_name("Jane", 456)
+    >>> say_my_name("Ingrid", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name(123, "Mornac")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name("Ingrid", 123)
     Traceback (most recent call last):
         ...
     TypeError: last_name must be a string
