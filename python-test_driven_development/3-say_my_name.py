@@ -11,7 +11,6 @@ def say_my_name(first_name, last_name=""):
     Parameters:
         first_name (str): The first name.
         last_name (str, optional): The last name. Defaults to "".
-
     Raises:
         TypeError: If first_name or last_name is not a string.
     """
