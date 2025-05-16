@@ -16,7 +16,7 @@ def matrix_divided(matrix, div):
         matrix: list of lists of integers or floats.
         div: The number to divide by.
     Returns:
-        A new matrix
+        A new matrix.
     Raises:
         TypeError: If matrix is not a list of lists of integers or floats,
                     or if div is not a number.
