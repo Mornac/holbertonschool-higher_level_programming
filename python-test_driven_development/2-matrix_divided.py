@@ -20,8 +20,8 @@ def matrix_divided(matrix, div):
     Raises:
         TypeError: If matrix is not a list of lists of integers or floats,
                     or if div is not a number.
-        ZeroDivisionError: If div is zero."""
-
+        ZeroDivisionError: If div is zero.
+    """
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
     if div == 0:
