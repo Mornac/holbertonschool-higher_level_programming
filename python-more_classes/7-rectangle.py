@@ -16,18 +16,15 @@ class Rectangle:
     def __init__(self, width=0, height=0):
         """
         Initialize a new Rectangle instance.
-
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
+            Rectangle.number_of_instances (int):
+                the number of instances of Rectangle.
         """
         self.width = width
         self.height = height
         Rectangle.number_of_instances += 1
-        """
-        This line increments the number_of_instances class variable
-        when a new rectangle instance is created.
-        """
 
     @property
     def width(self):
@@ -102,7 +99,16 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-        return "\n".join(["#" * self.__width for _ in range(self.__height)])
+        symbol = str(self.print_symbol)
+        """
+        This method returns a string representation of the rectangle
+        using the specified print_symbol character.
+        """
+        return "\n".join([symbol * self.__width for _ in range(self.__height)])
+        """
+        This method returns a string representation of the rectangle
+        using the '#' character.
+        """
 
     def __repr__(self):
         """
@@ -113,16 +119,6 @@ class Rectangle:
         """
         This method returns a string representation of the rectangle
         in the format "Rectangle(width, height)".
-        """
-        eval(self.__repr__())
-        """
-        This line evaluates the string representation of the rectangle
-        using the eval function.
-        """
-        print(self.__repr__())
-        """
-        This line prints the string representation of the rectangle
-        using the print function.
         """
 
     def __del__(self):
