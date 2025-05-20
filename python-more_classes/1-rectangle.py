@@ -11,25 +11,17 @@ class Rectangle:
     def __init__(self, width=0, height=0):
         """
         Initialize the rectangle with a given width and height.
-
         Args:
             width (int): The width of the rectangle by default.
             height (int): The height of the rectangle by default.
         """
-        self.__width = width
-        """
-        The private width of the rectangle.
-        """
-        self.__height = height
-        """
-        The private height of the rectangle.
-        """
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
         """
         Get the width of the rectangle.
-
         Returns:
             int: The width of the rectangle.
         """
@@ -39,7 +31,6 @@ class Rectangle:
     def width(self, value):
         """
         Set the width of the rectangle.
-
         Args:
             value (int): The new width of the rectangle.
         """
@@ -53,7 +44,6 @@ class Rectangle:
     def height(self):
         """
         Get the height of the rectangle.
-
         Returns:
             int: The height of the rectangle.
         """
@@ -63,7 +53,6 @@ class Rectangle:
     def height(self, value):
         """
         Set the height of the rectangle.
-
         Args:
             value (int): The new height of the rectangle.
         """
