@@ -24,6 +24,7 @@ class Rectangle:
         """
         The private height of the rectangle.
         """
+
     @property
     def width(self):
         """
