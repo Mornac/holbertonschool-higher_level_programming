@@ -16,7 +16,9 @@ class MyList(list):
         """
         if list_instance is None:
             list_instance = []
-        if not isinstance(list_instance, list):
+        elif isinstance(list_instance, int):
+            list_instance = [list_instance]
+        elif not isinstance(list_instance, list):
             raise TypeError("list_instance must be a list of integers")
         if not all(isinstance(i, int) for i in list_instance):
             raise TypeError("list_instance must be a list of integers")
