@@ -7,7 +7,7 @@ Tests
 
     >>> bg.integer_validator("name", "John")
             John
-    
+
     >>> bg.integer_validator("age", 0)
             0
 
