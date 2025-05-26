@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+"""
+Function that checks if an object is exactly an instance of a specified class.
+"""
+
+
+class BaseGeometry:
+    """
+    class with a method to check if an object is an instance of the class.
+    """
+    pass
+
+    def area(self):
+        """
+        Raises an exception if the area method is not implemented.
+        """
+        raise Exception("area() is not implemented")
+
+    def integer_validator(self, name, value):
+        """
+        Validates that value is an integer greater than 0.
+        Args:
+            name (str): is always a string.
+            value (int): The value to validate.
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is less than or equal to 0.
+        """
+        if type(value) is not int:
+            raise TypeError("{} must be an integer".format(name))
+        age = "age" if name == "age" else "distance"
+        distance = "distance" if name == "distance" else "age"
+        if value <= 0 and value != age and value != distance:
+            raise ValueError("{} must be greater than 0".format(name))
+        if value == age and value <= 0:
+            raise ValueError("{} must be greater than 0".format(age))
+        if value < 0:
+            raise ValueError("{} must be greater than 0".format(distance))
