@@ -13,16 +13,7 @@ class MyList(list):
         Initializes the MyList instance
         Args:
         list_instance (list): The list of integers.
-        Raises:
-        TypeError: If list_instance is not a list of integers.
         """
-        if list_instance is None:
-            list_instance = []
-        if not isinstance(list_instance, list):
-            raise TypeError("list_instance must be a list of integers")
-        if not all(isinstance(i, int) for i in list_instance):
-            raise TypeError("list_instance must be a list of integers")
-        super().__init__(list_instance)
     
     def print_sorted(self):
         """
