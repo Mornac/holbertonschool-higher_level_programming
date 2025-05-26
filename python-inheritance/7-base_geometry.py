@@ -8,6 +8,7 @@ class BaseGeometry:
     """
     class with a method to check if an object is an instance of the class.
     """
+    pass
 
     def area(self):
         """
