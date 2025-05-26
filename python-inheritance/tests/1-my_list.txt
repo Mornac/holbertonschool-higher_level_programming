@@ -6,7 +6,7 @@ Basic MyList
 .. code-block:: python
 
         >>> MyList(1)
-        1
+        [1]
 
 Type Errors
 -----------
