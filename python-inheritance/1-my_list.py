@@ -14,7 +14,7 @@ class MyList(list):
         Args:
         list_instance (list): The list of integers.
         """
-    
+
     def print_sorted(self):
         """
         Prints the list in ascending order
