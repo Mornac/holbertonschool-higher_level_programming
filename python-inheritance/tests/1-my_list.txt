@@ -1,13 +1,5 @@
 >>> MyList = __import__('1-my_list').MyList
 
-Basic MyList 
-------------
-
-.. code-block:: python
-
-        >>> MyList(1)
-        [1]
-
 Type Errors
 -----------
 
