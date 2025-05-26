@@ -102,9 +102,3 @@ class Square(Rectangle):
             str: A string in the format "[Rectangle] <size>/<size>".
         """
         return "[Rectangle] {}/{}".format(self.__size, self.__size)
-
-    def __print__(self):
-        """
-        Prints a string representation of the square.
-        """
-        print("[Rectangle] {}/{}".format(self.__size, self.__size))
