@@ -44,8 +44,8 @@ class Rectangle(BaseGeometry):
             height (int): The height of the rectangle.
         Raises:
             TypeError: If width or height must be an integer.
-            AttributeError: If 'Rectangle' object has no attribute
-                'width' or 'height'.
+            AttributeError:
+                If 'Rectangle' object has no attribute 'width' or 'height'.
         """
         self.integer_validator("width", width)
         self.integer_validator("height", height)
