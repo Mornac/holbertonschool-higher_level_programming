@@ -29,19 +29,12 @@ class MyList(list):
     """
     Class that inherits from the built-in list class
     """
-    def __init__(self):
+    def __init__(self, list_instance):
         """
         Initializes the MyList instance
         """
-        super()
-
-    def print_sorted(my_list):
-        """
-        Function that prints a sorted list
-        Args:
-        my_list (list): The list to be sorted and printed
-        """
-        if isinstance(my_list, list):
-            print(sorted(my_list))
-        else:
-            raise TypeError("my_list must be a list")
+        if not isinstance(list_instance, list):
+            raise TypeError("list_instance must be a list")
+        if not all(isinstance(i, int) for i in list_instance):
+            raise TypeError("list_instance must be a list of integers")
+        super().__init__(list_instance)
