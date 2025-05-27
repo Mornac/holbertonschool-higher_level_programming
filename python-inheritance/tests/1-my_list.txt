@@ -1,4 +1,6 @@
->>> MyList = __import__('1-my_list').MyList
+>>> import importlib
+>>> MyList = importlib.import_module("1-my_list").MyList
+
 
 Basic MyList 
 ------------
