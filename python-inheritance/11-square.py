@@ -74,7 +74,7 @@ class Square(Rectangle):
     Square class that inherits from Rectangle.
     It validates the size and provides an area method.
     """
-    def __init__(self, size):
+    def __init__(self, width):
         """
         Initializes the Square class with size.
         Args:
@@ -84,8 +84,8 @@ class Square(Rectangle):
             AttributeError:
                 If 'Square' object has no attribute 'size'.
         """
-        self.integer_validator("size", size)
-        self.__size = size
+        self.integer_validator("width", width)
+        self.__width = width
 
     def area(self):
         """
@@ -93,12 +93,12 @@ class Square(Rectangle):
         Returns:
             int: The area of the square.
         """
-        return self.__size * self.__size
+        return self.__width * self.__width
 
     def __str__(self):
         """
         Returns a string representation of the square.
         Returns:
-            str: A string in the format "[Rectangle] <size>/<size>".
+            str: A string in the format "[Square] <width>/<height>".
         """
-        return "[Rectangle] {}/{}".format(self.__size, self.__size)
+        return "[Square] {}/{}".format(self.__width, self.__width)
