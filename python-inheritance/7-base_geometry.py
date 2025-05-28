@@ -8,7 +8,6 @@ class BaseGeometry:
     """
     class with a method to check if an object is an instance of the class.
     """
-
     def area(self):
         """
         Raises an exception if the area method is not implemented.
