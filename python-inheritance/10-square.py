@@ -52,6 +52,12 @@ class Rectangle(BaseGeometry):
         self.integer_validator("height", height)
         self.__height = height
 
+    def __str__(self):
+        """
+        Returns a string representation of the rectangle.
+        """
+        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+
     def area(self):
         """
         Calculates the area of the rectangle.
@@ -59,13 +65,6 @@ class Rectangle(BaseGeometry):
             int: The area of the rectangle.
         """
         return self.__width * self.__height
-
-    def __str__(self):
-        """
-        Returns:
-            str: A string in the format "[Rectangle] <width>/<height>".
-        """
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
 
 
 class Square(Rectangle):
@@ -87,6 +86,12 @@ class Square(Rectangle):
         self.__size = size
         super().__init__(size, size)
 
+    def __str__(self):
+        """
+        Returns a string representation of the square.
+        """
+        return "[Rectangle] {}/{}".format(self.__size, self.__size)
+
     def area(self):
         """
         Calculates the area of the square.
@@ -94,10 +99,3 @@ class Square(Rectangle):
             int: The area of the square.
         """
         return self.__size * self.__size
-
-    def __str__(self):
-        """
-        Returns:
-            str: A string in the format "[Rectangle] <size>/<size>".
-        """
-        return "[Rectangle] {}/{}".format(self.__size, self.__size)

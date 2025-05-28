@@ -68,6 +68,12 @@ class Rectangle(BaseGeometry):
         """
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
 
+    def print(self):
+        """
+        Prints the rectangle.
+        """
+        print("[Rectangle] {}/{}".format(self.__width, self.__height))
+
 
 class Square(Rectangle):
     """
@@ -102,3 +108,9 @@ class Square(Rectangle):
             str: A string in the format "[Square] <width>/<height>".
         """
         return "[Square] {}/{}".format(self.__width, self.__width)
+
+    def print(self):
+        """
+        Prints the square.
+        """
+        print("[Square] {}/{}".format(self.__size, self.__size))
