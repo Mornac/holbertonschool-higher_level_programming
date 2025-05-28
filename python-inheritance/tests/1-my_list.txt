@@ -1,5 +1,5 @@
->>> import importlib
->>> MyList = importlib.import_module("1-my_list").MyList
+>>> MyList = __import_1__("1-my_list").MyList
+>>> print_sorted = MyList.print_sorted
 
 
 Basic MyList 
@@ -7,20 +7,27 @@ Basic MyList
 
 .. code-block:: python
 
-        >>> MyList(1)
-        1
+        >>> my_list = MyList()
+            my_list.append(1)
+            my_list.append(4)
+            my_list.append(2)
+            my_list.append(3)
+            my_list.append(5)
+            print(my_list)
+            my_list.print_sorted()
+            print(my_list)
 
 Type Errors
 -----------
 
 .. code-block:: python
 
-        >>> MyList(1.2)
+        >>> my_list.append("1")
         Traceback (most recent call last):
             ...
         TypeError: list_instance must be a list of integers
 
-        >>> MyList('1')
+        >>> MyList('School')
         Traceback (most recent call last):
             ...
         TypeError: list_instance must be a list of integers
