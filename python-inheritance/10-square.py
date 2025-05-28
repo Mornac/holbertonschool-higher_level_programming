@@ -62,7 +62,6 @@ class Rectangle(BaseGeometry):
 
     def __str__(self):
         """
-        Returns a string representation of the rectangle.
         Returns:
             str: A string in the format "[Rectangle] <width>/<height>".
         """
