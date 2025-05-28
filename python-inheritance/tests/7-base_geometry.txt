@@ -55,3 +55,9 @@ Errors
     Traceback (most recent call last):
         ...
     TypeError: age must be an integer
+
+    >>> bg = BaseGeometry()
+        >>> bg.area()
+        Traceback (most recent call last):
+        ...
+        Exception: area() is not implemented
