@@ -31,7 +31,7 @@ Errors
     >>> bg.integer_validator("distance", 4.4)
     Traceback (most recent call last):
         ...
-    TypeError: age must be an integer
+    TypeError: distance must be an integer
 
     >>> bg.integer_validator("age", [1,2])
     Traceback (most recent call last):
