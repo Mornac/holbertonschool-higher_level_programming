@@ -1,48 +1,27 @@
->>> MyList = __import_1__("1-my_list").MyList
->>> print_sorted = MyList.print_sorted
-
-
-Basic MyList 
-------------
-
-.. code-block:: python
-
-        >>> my_list = MyList()
-            my_list.append(1)
-            my_list.append(4)
-            my_list.append(2)
-            my_list.append(3)
-            my_list.append(5)
-            print(my_list)
-            my_list.print_sorted()
-            print(my_list)
+>>> MyList = __import__("1-my_list").MyList
+>>> my_list = MyList()
 
 Type Errors
 -----------
 
 .. code-block:: python
 
-        >>> my_list.append("1")
+        >>> my_list.append('School')
         Traceback (most recent call last):
             ...
-        TypeError: list_instance must be a list of integers
+        TypeError: my_list must be a list of integers
 
-        >>> MyList('School')
+        >>> my_list.append((1,))
         Traceback (most recent call last):
             ...
-        TypeError: list_instance must be a list of integers
+        TypeError: my_list must be a list of integers
 
-        >>> MyList((1,))
+        >>> my_list.append(True)
         Traceback (most recent call last):
             ...
-        TypeError: list_instance must be a list of integers
+        TypeError: my_list must be a list of integers
 
-        >>> MyList(True)
+        >>> my_list.append(False)
         Traceback (most recent call last):
             ...
-        TypeError: list_instance must be a list of integers
-
-        >>> MyList(False)
-        Traceback (most recent call last):
-            ...
-        TypeError: list_instance must be a list of integers
+        TypeError: my_list must be a list of integers

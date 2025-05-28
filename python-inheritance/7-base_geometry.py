@@ -20,8 +20,8 @@ class BaseGeometry:
         """
         Validates that value is an integer greater than 0.
         Args:
-            name (str): is always a string.
-            value (int): The value to validate.
+            name: is always a string.
+            value: The value to validate.
         Raises:
             TypeError: If value is not an integer.
             ValueError: If value is less than or equal to 0.
