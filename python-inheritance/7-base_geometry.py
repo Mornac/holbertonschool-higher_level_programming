@@ -8,7 +8,6 @@ class BaseGeometry:
     """
     class with a method to check if an object is an instance of the class.
     """
-    pass
 
     def area(self):
         """
@@ -28,5 +27,5 @@ class BaseGeometry:
         """
         if type(value) is not int:
             raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
+        elif value <= 0:
             raise ValueError("{} must be greater than 0".format(name))
