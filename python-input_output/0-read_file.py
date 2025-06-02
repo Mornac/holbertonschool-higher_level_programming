@@ -12,4 +12,4 @@ def read_file(filename=""):
     """
     with open("my_file_0.txt", "r") as file:
         content = file.read()
-        print(content.rstrip(), end="")
+        print(content.rstrip("\n"), end="")
