@@ -2,6 +2,7 @@
 """
 Module that returns the JSON string representation of an object.
 """
+import json
 
 
 def to_json_string(my_obj):
@@ -14,7 +15,7 @@ def to_json_string(my_obj):
     Raises:
         TypeError: If the object cannot be serialized to JSON.
     """
-    import json
+
     json_str = str(json.dumps(my_obj))
     if my_obj is None:
         return json_str
