@@ -7,6 +7,7 @@ import json
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
+
 def add_item(args, filename='add_item.json'):
     """
     Adds all arguments to a Python list and saves them to a file.
@@ -16,4 +17,9 @@ def add_item(args, filename='add_item.json'):
     """
     if not isinstance(filename, str):
         filename = 'add_item.json'
-    save_to_json_file(args, filename)
+    try:
+        items = load_from_json_file(filename)
+    except FileNotFoundError:
+        items = []
+    items.extend(args)
+    save_to_json_file(items, filename)
