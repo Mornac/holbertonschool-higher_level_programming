@@ -16,10 +16,14 @@ class CustomObject:
         age (int): An integer value
         is_student (bool): A boolean indicating if the object is a student.
     """
-
-    def __init__(self, name, value):
+    def __init__(self, name, age, is_student=True):
         self.name = name
-        self.value = value
+        self.age = age
+        self.is_student = is_student
+
+    def __repr__(self):
+        return ("CustomObject(name: {}, age: {}, is_student: {}".format(
+            self.name, self.age, self.is_student))
 
     def serialize(self, filename):
         """
@@ -42,7 +46,7 @@ class CustomObject:
         """
         filename = filename.strip()
         if not filename or filename == 'None':
-            return None        
+            return None
 
         with open(filename, 'rb') as file:
             return pickle.load(file)
