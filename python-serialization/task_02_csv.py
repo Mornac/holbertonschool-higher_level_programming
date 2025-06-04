@@ -16,7 +16,10 @@ def convert_csv_to_json(csv_file):
     """
     with open(csv_file, 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
-        data = list(reader)
+        data = []
+        for row in reader:
+            row['age'] = int(row['age'])
+            data.append(row)
         
-    with open('data.json', 'w', encoding='utf-8') as json_file:
+    with open('data.json', 'w', encoding='utf-8', newline='') as json_file:
         json.dump(data, json_file, indent=4)
