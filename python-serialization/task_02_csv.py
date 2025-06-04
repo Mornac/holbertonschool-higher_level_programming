@@ -25,6 +25,6 @@ def convert_csv_to_json(csv_file):
         print(f"File {csv_file} not found.")
         return False
 
-    with open('data.json', 'w', encoding='utf-8', newline='') as json_file:
+    with open('data.json', 'w', encoding='utf-8') as json_file:
         for row in data:
             json_file.write(json.dumps(row) + '\n')
