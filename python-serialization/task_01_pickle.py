@@ -7,10 +7,7 @@ import pickle
 
 class CustomObject:
     """
-    Function to demonstrate serialization and deserialization.
-    Args:
-        name (str): The name of the object.
-        value (int): An integer value associated with the object.
+    Represents a person.
     Attributes:
         name (str): The name of the object.
         age (int): An integer value
@@ -22,8 +19,8 @@ class CustomObject:
         self.is_student = is_student
 
     def __repr__(self):
-        return ("CustomObject(name: {}, age: {}, is_student: {}".format(
-            self.name, self.age, self.is_student))
+        return "CustomObject(name: {}, age: {}, is_student: {})".format(
+            self.name, self.age, self.is_student)
 
     def serialize(self, filename):
         """
@@ -31,8 +28,11 @@ class CustomObject:
         Args:
             filename (str): The name of the file to save the serialized object.
         """
-        with open(filename, 'wb') as file:
-            pickle.dump(self, file)
+        try:
+            with open(filename, 'wb') as file:
+                pickle.dump(self, file)
+        except Exception:
+            pass
 
     @classmethod
     def deserialize(cls, filename):
@@ -44,9 +44,16 @@ class CustomObject:
             An instance of CustomObject loaded from the file.
             None if the file does not exist or is empty.
         """
-        filename = filename.strip()
-        if not filename or filename == 'None':
+        try:
+            with open(filename, 'rb') as file:
+                return pickle.load(file)
+        except Exception:
             return None
 
-        with open(filename, 'rb') as file:
-            return pickle.load(file)
+    def display(self):
+        """
+        Prints the object in a readable format.
+        """
+        print("Name: {}".format(self.name))
+        print("Age: {}".format(self.age))
+        print("Is Student: {}".format(self.is_student))
