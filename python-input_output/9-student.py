@@ -15,9 +15,10 @@ class Student:
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
-    
+
     def to_json(self):
         """
-        Retrieves a dict representation of a student instance and writes it to a file.
+        Retrieves a dict representation of a student instance
+            and writes it to a file.
         """
         return self.__dict__
