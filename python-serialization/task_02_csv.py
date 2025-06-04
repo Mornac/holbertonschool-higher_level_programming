@@ -22,4 +22,5 @@ def convert_csv_to_json(csv_file):
             data.append(row)
         
     with open('data.json', 'w', encoding='utf-8', newline='') as json_file:
-        json.dump(data, json_file, indent=4)
+        for row in data:
+            json_file.write(json.dumps(row) + '\n')
