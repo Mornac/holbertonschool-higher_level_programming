@@ -38,3 +38,10 @@ class Student:
         """
         for key, value in json.items():
             setattr(self, key, value)
+
+    def __str__(self):
+        """
+        Returns a string representation of the Student instance.
+        """
+        return ("Student({}, {}, {}".format(self.first_name,
+                                            self.last_name, self.age))
