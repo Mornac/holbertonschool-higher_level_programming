@@ -7,7 +7,7 @@ import pickle
 
 class CustomObject:
     """
-    A custom object to demonstrate serialization and deserialization.
+    Function to demonstrate serialization and deserialization.
     Args:
         name (str): The name of the object.
         value (int): An integer value associated with the object.
@@ -37,13 +37,12 @@ class CustomObject:
         Args:
             filename: The name of the file to load the serialized object from
         Returns:
-            CustomObject: An instance of CustomObject loaded from the file.
+            An instance of CustomObject loaded from the file.
+            None if the file does not exist or is empty.
         """
         filename = filename.strip()
-        if not filename:
-            raise ValueError("Filename cannot be empty.")
-        if not isinstance(filename, str):
-            raise TypeError("Filename must be a string.")
+        if not filename or filename == 'None':
+            return None        
 
         with open(filename, 'rb') as file:
             return pickle.load(file)
