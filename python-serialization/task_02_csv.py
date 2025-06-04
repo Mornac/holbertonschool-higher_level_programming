@@ -14,13 +14,17 @@ def convert_csv_to_json(csv_file):
     :param CSV filename: The name of the CSV file to convert.
     :return: JSON data as a string.
     """
-    with open(csv_file, 'r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)
-        data = []
-        for row in reader:
-            row['age'] = int(row['age'])
-            data.append(row)
-        
+    try:
+        with open(csv_file, 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            data = []
+            for row in reader:
+                row['age'] = int(row['age'])
+                data.append(row)
+    except FileNotFoundError:
+        print(f"File {csv_file} not found.")
+        return False
+
     with open('data.json', 'w', encoding='utf-8', newline='') as json_file:
         for row in data:
             json_file.write(json.dumps(row) + '\n')
