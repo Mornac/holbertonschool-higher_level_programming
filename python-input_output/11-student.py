@@ -2,9 +2,6 @@
 """
 Module that defines a student class
 """
-import os
-import sys
-__import__('10-student').Student
 
 
 class Student:
