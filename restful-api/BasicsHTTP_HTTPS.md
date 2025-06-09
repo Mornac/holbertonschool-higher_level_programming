@@ -6,7 +6,7 @@ and transfer data efficiently between systems.
 We can differentiate HTTP and HTTPS, understand the basic working and structure of HTTP requests and responses. 
 We can recognize and explain the common HTTP methods and status codes.   
 
-## **1 Differences between HTTP and HTTPS**
+## **1 Differenciating HTTP and HTTPS**
 |Items|HTTP|HTTPS|
 |-----|----|-----|
 |URL Prefix|http://|https://|
@@ -22,14 +22,15 @@ The S of HTTPS is Security to facilitate the understanding.
 HTTPS use a TLS SSL encrytion while HTTP doesn't use any encryption.
 HTTP is more speed to treat requests and responses than HTTPS.  
 
+## **2 Understanding HTTP Structure**  
+I show an example of an HTTP exchange when accessing the website: http://informatique.p.tous.free.fr/crbst_10.html.  
+This is a structure of an HTTP request and response. 
 
-## **2 Structure of an HTTP request and response**
-Exemple de site: http://informatique.p.tous.free.fr/crbst_10.html  
-
-****Headers section****   
+****Request****  
 Request URL: http://informatique.p.tous.free.fr/crbst_10.html  
 ***Request Method***  
 GET  
+****Response****  
 ***Status Code***  
 304 Not Modified
 
@@ -63,3 +64,55 @@ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
 
 ****Timing****
 ![Plan of the timing](https://github.com/Mornac/holbertonschool-higher_level_programming/blob/main/restful-api/image/restful_api%20Timing.png)  
+- Queueing: Wait before the request starts (browser is busy or prioritizing).    
+- Stalled: Total time before the browser sends the request.    
+- DNS Lookup: time to find the IP address of the website.  
+- Initial connection: time to connect to the server.  
+- SSL/TLS Negotiation (HTTPS only): secure handshake to encrypt communication.  
+- Request sent: time it takes to send the request to the server.  
+- Waiting: Time from request sent to receiving the first byte of the response.  
+- Content download: time to download the entire response content.  
+
+## **3 Exploring HTTP Methods and Status Codes**  
+I make a list of 4 common HTTP methods, its use and an example of a real situation.
+And I make another list of 5 common HTTP status codes, with a brief description and an example of use.
+
+### **List of 4 common HTTP methods**
+|HTTP Method|Use|Syntax|
+|-----------|---|------|
+|GET method|Read or retrieve information from the given server using a given URI|requests.get(url, params={key: value}, args)|
+|POST request method|Create or modify data|requests.post(url, params={key: value}, args)|
+PATCH request|Modify resources. Needs to contain the changes to the resource, not the complete resource|requests.patch(url, params={key: value}, args)
+|DELETE method|Delete a resource identified by filters or ID|requests.delete(url, params={key: value}, args)|  
+
+****Example: HTTP Methods in an E-commerce website****  
+- A customer views the product page of shoes:  
+method=GET: read a product  
+There is no changes made to the database: it's a read information.  
+- The seller adds a new product throw the admin dashboard:  
+method=POST: create a new product  
+A new product record is saved, including all characters.  
+- The seller edits the new price for an existing product:  
+method=PATCH: updates specific information about an existing product  
+It's a partial update : only the provided fields are updates.  
+- The seller removes a product that is out of stock:  
+method=DELETE: delete a product from the database  
+The product is permanently removed, no longer shown to users.  
+
+### **List of 5 common HTTP status codes**  
+****HTTP GET****  
+|Status code|Description|Scenario where encountered|
+|-----------|-----------|--------------------------|
+|200|Success / OK|HTTP GET API: the resource is found on the server|
+|404|Not found|The resource is not found on the server|
+|400|Bad request|The GET request itself is not correctly formed|
+
+****HTTP POST****  
+|Status code|Description|Scenario where encountered|
+|-----------|-----------|--------------------------|
+|201|Created|Resource has been created on the origin server|
+
+****HTTP DELETE****  
+|Status code|Description|Scenario where encountered|
+|-----------|-----------|--------------------------|
+|202|Accepted|The action has been queued|  
