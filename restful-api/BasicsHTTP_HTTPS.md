@@ -62,4 +62,4 @@ https://www.google.com/
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36  
 
 ****Timing****
-![Plan of the timing]{https://github.com/Mornac/holbertonschool-higher_level_programming/blob/main/restful-api/image/restful_api%20Timing.png}  
+![Plan of the timing](https://github.com/Mornac/holbertonschool-higher_level_programming/blob/main/restful-api/image/restful_api%20Timing.png)  
