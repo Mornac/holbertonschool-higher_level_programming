@@ -110,7 +110,7 @@ The product is permanently removed, no longer shown to users.
 ****HTTP POST****  
 |Status code|Description|Scenario where encountered|
 |-----------|-----------|--------------------------|
-|201|Created - A new resource was crated|Resource has been created on the origin server|
+|201|Created - A new resource was created|Resource has been created on the origin server|
 
 ****HTTP DELETE****  
 |Status code|Description|Scenario where encountered|
