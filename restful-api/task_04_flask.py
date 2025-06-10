@@ -22,11 +22,11 @@ def data():
     """
     Endpoint to return a list of usernames in the dict users
     """
-    return jsonify(list(users.key()))
+    return jsonify(list(users.keys()))
 
 
 @app.route('/status', methods=['GET'])
-def status(self):
+def status():
     """
     Endpoint to check the status of the API.
     """
@@ -51,6 +51,7 @@ def add_user():
     Endpoint to add a user.
     """
     data = request.get_json()
+
     if not data or 'username' not in data:
         return jsonify({"error": "Username is required"}), 400
 
