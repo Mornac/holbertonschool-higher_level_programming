@@ -2,7 +2,6 @@
 """
 Module to develop a Simple API using Flask.
 """
-import json
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -36,7 +35,7 @@ def status():
 @app.route('/users/<username>', methods=['GET'])
 def get_user(username):
     """
-    Endpoint to return the user
+    Endpoint to return a user's data
     """
     user = users.get(username)
     if user:
@@ -51,12 +50,10 @@ def add_user():
     Endpoint to add a user.
     """
     data = request.get_json()
-
     if not data or 'username' not in data:
         return jsonify({"error": "Username is required"}), 400
 
     username = data['username']
-
     if username in users:
         return jsonify({"error": "Username already exists"}), 400
 
