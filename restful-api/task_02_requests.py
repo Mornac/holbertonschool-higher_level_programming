@@ -14,15 +14,14 @@ def fetch_and_print_posts():
     url = 'https://jsonplaceholder.typicode.com/posts'
     if method == 'GET':
         response = requests.get(url)
-
-    print("Status code:", response.status_code)
+    print("Status Code:", response.status_code)
 
     if response.status_code == 200:
         posts = response.json()
         for post in posts:
             print(f"{post['title']}")
     else:
-        print(f"Status code: {response.status_code}")
+        print("Status code:", response.status_code)
 
 
 def fetch_and_save_posts():
@@ -43,4 +42,4 @@ def fetch_and_save_posts():
                     writer.writerow({'id': post['id'], 'title': post['title'],
                                      'body': post['body']})
         else:
-            print(f"Status code: {response.status_code}")
+            print("Status Code:", response.status_code)
