@@ -29,7 +29,7 @@ def status():
     """
     Endpoint to check the status of the API.
     """
-    return jsonify({"status": "OK"}), 200
+    return "OK"
 
 
 @app.route('/users/<username>', methods=['GET'])
@@ -39,7 +39,7 @@ def get_user(username):
     """
     user = users.get(username)
     if user:
-        return jsonify(user), 200
+        return jsonify(user)
     else:
         return jsonify({"error": "User not found"}), 404
 
@@ -49,17 +49,15 @@ def add_user():
     """
     Endpoint to add a user.
     """
-    data = request.get_json()
-    if not data or 'username' not in data:
+    user_data = request.get_json()
+    username = user_data.get('username')
+
+    if not username:
         return jsonify({"error": "Username is required"}), 400
 
-    username = data['username']
-    if username in users:
-        return jsonify({"error": "Username already exists"}), 400
-
-    users[username] = data
-    return jsonify({"message": f"User {username} added successfully"}), 201
+    users[username] = user_data
+    return jsonify({"message": "User added", "user": user_data}), 201
 
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=5000)
+    app.run(debug=False)
