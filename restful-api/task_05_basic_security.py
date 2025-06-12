@@ -3,6 +3,8 @@
 Module that implements a basic security layer for a RESTful API.
 """
 from flask import Flask, jsonify, request
+from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
 
