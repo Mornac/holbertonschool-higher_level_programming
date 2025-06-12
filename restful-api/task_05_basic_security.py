@@ -9,13 +9,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 app.config['SECRET_KEY'] = 'secret_key'
-auth = HTTPDigestAuth()
-auth = HTTPTokenAuth()
+#auth = HTTPDigestAuth()
+#auth = HTTPTokenAuth()
 
 
 users = {
-    "user": generate_password_hash("password"),
-    "admin": generate_password_hash("admin")
+    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
+    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
 }
 
 tokens = {
@@ -24,16 +24,15 @@ tokens = {
 }
 
 
-"""
+
 @auth.verify_password
 def verify_password(username, password):
-    
+    """
     Verify the username and password against stored credentials.
-    
+    """
     if username in users and \
-            check_password_hash(users.get(username), password):
+            check_password_hash(users[username]["password"], password):
         return username
-"""
 
 
 @app.route('/')
@@ -67,14 +66,14 @@ def index():
     return jsonify({"message": "Welcome to the Home Page"})
 
 
-@auth.verify_token
+"""@auth.verify_token
 def verify_token(token):
-    """
+
     Verify the token against stored tokens.
-    """
+
     if token in tokens:
         return tokens.get(token)
-    return None
+    return None"""
 
 
 @app.route('/')
