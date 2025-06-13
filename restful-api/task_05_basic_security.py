@@ -1,4 +1,3 @@
-#!./venv/bin/python3
 """
 Module that implements a basic security layer for a RESTful API.
 """
@@ -44,7 +43,7 @@ def index():
     return jsonify({"message": "Welcome to the RESTful API with Basic Security"})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0')
 
 
 @auth.get_password
