@@ -1,154 +1,90 @@
-"""
-Module that implements a basic security layer for a RESTful API.
-"""
-from webbrowser import get
-from flask import Flask, jsonify, request
-from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth, HTTPDigestAuth
+#!/usr/bin/python3
+from flask_httpauth import HTTPBasicAuth
+from flask import Flask
+from flask import jsonify
+from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
-app = Flask(__name__)
-auth = HTTPBasicAuth()
-app.config['SECRET_KEY'] = 'secret_key'
-#auth = HTTPDigestAuth()
-#auth = HTTPTokenAuth()
+from flask_jwt_extended import (
+    JWTManager, create_access_token, jwt_required,
+    get_jwt_identity
+)
 
+app = Flask(__name__)
+
+app.config["JWT_SECRET_KEY"] = "#BaptisteLeBGdu31!"
+
+auth = HTTPBasicAuth()
+jwt = JWTManager(app)
 
 users = {
-    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
-    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("password"),
+        "role": "admin"
+    }
 }
-
-tokens = {
-    "user_token1": "user_token_value",
-    "admin_token1": "admin_token_value"
-}
-
-
-
 @auth.verify_password
 def verify_password(username, password):
-    """
-    Verify the username and password against stored credentials.
-    """
-    if username in users and \
-            check_password_hash(users[username]["password"], password):
+    user = users.get(username)
+    if user and check_password_hash(user["password"], password):
         return username
-
-
-@app.route('/')
-@auth.login_required
-def index():
-    """
-    A simple index endpoint that returns a welcome message.
-    """
-    return jsonify({"message": "Welcome to the RESTful API with Basic Security"})
-
-if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
-
-
-@auth.get_password
-def get_password(username):
-    """
-    Get the password for a given username.
-    """
-    if username in users:
-        return users.get(username)
     return None
 
 
-@app.route('/')
+@app.route("/basic-protected", methods=["GET"])
 @auth.login_required
-def index():
-    """
-    A home endpoint that requires authentication.
-    """
-    return jsonify({"message": "Welcome to the Home Page"})
-
-
-"""@auth.verify_token
-def verify_token(token):
-
-    Verify the token against stored tokens.
-
-    if token in tokens:
-        return tokens.get(token)
-    return None"""
-
-
-@app.route('/')
-@auth.login_required
-def index():
-    """
-    A home endpoint that requires token authentication.
-    """
-    return jsonify({"message": "Welcome to the Home Page with Token Authentication"})
-
-
-@auth.get_user_roles
-def get_user_roles(username):
-    """
-    Get the roles for a given username.
-    """
-    if username == 'admin':
-        return ['admin']
-    return ['user']
-
-
-@app.route('/admin', methods=['GET'])
-@auth.login_required(role='admin')  
-def admin():
-    """
-    An admin endpoint that requires authentication.
-    """
-    if not request.authorization or not (request.authorization.username == 'admin' and request.authorization.password == 'admin'):
-        return jsonify({"message": "Admin access required"}), 403
-    return jsonify({"message": "Admin access granted"})
-
-
-@auth.hash_password
-def hash_password(password):
-    """
-    Hash the provided password.
-    """
-    return hash_password(password)
-
-
-@app.route('/basic-protected', methods=['GET'])
 def basic_protected():
-    """
-    A basic protected endpoint that requires authentication.
-    """
-    request.authorization = HTTPBasicAuth().authenticate(request)
-    get().auth().basic("your username", "your password").get("your end point URL")
-    generate_password_hash("your password")
-    check_password_hash("your hashed password", "your password")
-    if not request.authorization or not (request.authorization.username == 'user' and request.authorization.password == 'password'):
-        return jsonify({"message": "Authentication required"}), 401
-    if not request.authorization:
-        return jsonify({"message": "Authentication required"}), 401
-    return jsonify({"Basic Auth: Access Granted"})
+    return "Basic Auth: Access Granted"
 
 
-@app.route('/login', methods=['POST'])
+@app.route("/login", methods=["POST"])
 def login():
-    """
-    A login endpoint that checks the provided credentials.
-    """
-    auth = request.authorization
-    request.authorization = auth
-    username = auth.username
-    password = auth.password
-    if not username or not password:
-        return jsonify({"message": "Credentials are not valid"}), 401
-    return jsonify({"message": "access_token: <JWT_TOKEN>"}), 200
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    user = users.get(username)
+    if not user or not check_password_hash(user["password"], password):
+        return jsonify({"msg": "Bad username or password"}), 401
 
+    access_token = create_access_token(identity={"username": username, "role": user["role"]})
+    return jsonify(access_token=access_token)
 
-@app.route('/jwt-protected', methods=['GET'])
-def jwt_protected():
-    """
-    A JWT protected endpoint that requires a valid JWT token.
-    """
-    token = request.headers.get('Authorization')
-    if not token or token.startswith('Bearer '):
-        return jsonify({"message": "Missing or invalid token"}), 401
-    return jsonify({"JWT Auth: Access Granted"})
+@app.route("/jwt-protected", methods=["GET"])
+@jwt_required()
+def protected():
+    return "JWT Auth: Access Granted"
+
+@app.route("/admin-only", methods=["GET"])
+@jwt_required()
+def admin():
+    current_user = get_jwt_identity()
+    if current_user.get("role") != "admin":
+        return jsonify({"error": "Admin access required"}), 403
+    return "Admin Access: Granted"
+
+@jwt.unauthorized_loader
+def handle_unauthorized_error(err):
+      return jsonify({"error": "Missing or invalid token"}), 401
+
+@jwt.invalid_token_loader
+def handle_invalid_token_error(err):
+      return jsonify({"error": "Invalid token"}), 401
+
+@jwt.expired_token_loader
+def handle_expired_token_error(err):
+      return jsonify({"error": "Token has expired"}), 401
+
+@jwt.revoked_token_loader
+def handle_revoked_token_error(err):
+      return jsonify({"error": "Token has been revoked"}), 401
+
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(err):
+      return jsonify({"error": "Fresh token required"}), 401
+
+if __name__ == "__main__":
+    app.run()
