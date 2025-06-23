@@ -1,0 +1,4 @@
+-- 7 First add
+-- Script that inerts a new row in the table first_table (datatbase hbtn_0c_0)
+-- in my MySQL server.
+INSERT INTO first_table (id, name) VALUES (89, 'Best School');
