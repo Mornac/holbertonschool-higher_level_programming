@@ -3,6 +3,4 @@
 -- states table contains only 1 record where name = California (but the id can be different)
 -- results must be sorted in ascending order by cities.id
 USE hbtn_0d_usa;
-SELECT id, name FROM cities WHERE state_id = 
-    (SELECT id FROM states WHERE name ='California')
-    ORDER BY id ASC;
+SELECT id, name FROM cities WHERE state_id = (SELECT id FROM states WHERE name ='California') ORDER BY id ASC;
