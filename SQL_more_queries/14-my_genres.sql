@@ -1,13 +1,11 @@
--- 13 Number of shows by genre
--- Script that lists all genres from hbtn_0d_tvshows and displays the number of shows linked to each.
--- Each record should display: <TV Show genre> - <Number of shows linked to this genre>
--- First column must be called genre
--- Second column must be called number_of_shows
--- Don’t display a genre that doesn’t have any shows linked
--- Results must be sorted in descending order by the number of shows linked
-SELECT tv_genres.name AS genre, 
-COUNT(tv_show_genres.show_id) AS number_of_shows FROM tv_genres
-LEFT JOIN tv_show_genres ON tv_genres.id = tv_show_genres.genre_id
-WHERE tv_show_genres.genre_id IS NOT NULL
-GROUP BY genre
-ORDER BY number_of_shows DESC;
+-- 14 My genres
+-- Script that uses the hbtn_0d_tvshows database to lists all genres of the show Dexter
+-- The tv_shows table contains only one record where title = Dexter (but the id can be different)
+-- Each record should display: tv_genres.name
+-- Results must be sorted in ascending order by the genre name
+SELECT tv_genres.name
+FROM tv_shows
+JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+WHERE tv_shows.title = 'Dexter'
+ORDER BY tv_genres.name ASC;
