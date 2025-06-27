@@ -34,8 +34,8 @@ def main():
         "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
         (searched_state,)
     )
-    query_roows = cur.fetchall()
-    for row in query_roows:
+    query_rows = cur.fetchall()
+    for row in query_rows:
         print(row)
     cur.close()
     conn.close()
