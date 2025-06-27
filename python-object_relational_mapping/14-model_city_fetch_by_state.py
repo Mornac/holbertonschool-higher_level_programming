@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """
-Module that contains a function displaying specific objects from the database hbtn_0e_6_usa
+Module containing function listing objects from a database.
 """
 import sys
 from model_state import Base, State
+from model_city import City
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
@@ -11,20 +13,16 @@ from sqlalchemy.orm.exc import NoResultFound
 
 def main():
     """
-    Prints State object matching argument from a database.
+    Lists City objects from a database.
     """
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-    state_searched = sys.argv[4]
-
-    if "'" in state_searched:
-        sys.exit()
 
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost/{}'.format(
-            username, 
-            password, 
+            username,
+            password,
             database
         ),
         pool_pre_ping=True
@@ -33,16 +31,18 @@ def main():
     Session = sessionmaker(bind=engine)
 
     session = Session()
-    try:
-        state = session.query(State)
-        .where(State.name == state_searched)
-        .order_by(State.id)
-        .limit(1)
-        .one()
-    except NoResultFound:
-        print("Not found")
-    else:
-        print("{}".format(state.id))
+
+    results = session.query(City, State).join(
+        State, City.state_id == State.id
+    ).order_by(City.id).all()
+
+    for row in results:
+        print("{}: ({}) {}".format(
+            row.State.name,
+            row.City.id,
+            row.City.name
+        ))
+
     session.close()
 
 
