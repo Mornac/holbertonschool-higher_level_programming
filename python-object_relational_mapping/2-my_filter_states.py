@@ -10,10 +10,13 @@ import sys
 
 
 def main():
+    if len(sys.argv) != 5:
+        sys.exit()
+
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-    namesearch = sys.argv[4]
+    searched_state = sys.argv[4]
 
     conn = MySQLdb.connect(
         host="localhost",
@@ -26,7 +29,8 @@ def main():
 
     cur = conn.cursor()
     cur.execute(
-        "SELECT namesearch FROM states ORDER BY id ASC"
+        "SELECT * FROM states WHERE name = BINARY '{}' ORDER BY id ASC"
+        .format(searched_state)
     )
     query_roows = cur.fetchall()
     for row in query_roows:
