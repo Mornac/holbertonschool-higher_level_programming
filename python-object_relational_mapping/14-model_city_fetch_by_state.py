@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 
 
-def main():
+if __name__ == "__main__":
     """
     Lists City objects from a database.
     """
@@ -20,31 +20,28 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             username,
             password,
             database
         ),
         pool_pre_ping=True
     )
-    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
 
     session = Session()
 
-    results = session.query(City, State).join(
-        State, City.state_id == State.id
-    ).order_by(City.id).all()
+    # Get th state name
+    cities = (
+        session.query(City, State)
+        .filter(City.state_id == State.id)
+        .order_by(City.id)
+        .all()
+        )
 
-    for row in results:
-        print("{}: ({}) {}".format(
-            row.State.name,
-            row.City.id,
-            row.City.name
-        ))
+    # Print the results
+    for city, state in cities:
+        print(f"{state.name}: ({city.id}) {city.name}")
 
+    # Close the session
     session.close()
-
-
-if __name__ == "__main__":
-    main()
