@@ -4,13 +4,11 @@ Module containing function adding specific object from a database.
 """
 import sys
 from model_state import Base, State
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.exc import NoResultFound
 
 
-def main():
+if __name__ == "__main__":
     """
     Adds a State object in a database.
     """
@@ -19,7 +17,7 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             username,
             password,
             database
@@ -30,17 +28,16 @@ def main():
     Session = sessionmaker(bind=engine)
 
     session = Session()
+    # create a new state
     new_state = State(name="Louisiana")
+
+    # add the new state
     session.add(new_state)
+
+    # commit the session to the database
     session.commit()
 
-    state = session.query(State).where(
-        State.name == "Louisiana"
-    ).limit(1).one()
+    # print the id of the new state
+    print(new_state.id)
 
-    print("{}".format(state.id))
     session.close()
-
-
-if __name__ == "__main__":
-    main()
