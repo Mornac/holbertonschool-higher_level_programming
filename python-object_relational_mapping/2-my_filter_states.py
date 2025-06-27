@@ -10,6 +10,8 @@ import sys
 
 
 def main():
+    """
+    Lists all values in states table """
     if len(sys.argv) != 5:
         sys.exit()
 
@@ -29,8 +31,8 @@ def main():
 
     cur = conn.cursor()
     cur.execute(
-        "SELECT * FROM states WHERE name = BINARY '{}' ORDER BY id ASC"
-        .format(searched_state)
+        "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC"
+        .format(sys.argv[4])
     )
     query_roows = cur.fetchall()
     for row in query_roows:
