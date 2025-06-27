@@ -31,11 +31,11 @@ def main():
 
     cur = conn.cursor()
     cur.execute(
-        "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC"
-        .format(sys.argv[4])
+        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+        (searched_state,)
     )
-    query_roows = cur.fetchall()
-    for row in query_roows:
+    roows = cur.fetchall()
+    for row in roows:
         print(row)
     cur.close()
     conn.close()
