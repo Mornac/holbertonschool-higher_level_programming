@@ -4,10 +4,9 @@ Module containing function displaying first object from a database.
 """
 import sys
 from model_state import Base, State
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.exc import NoResultFound
+from SQLAlchemy import create_engine
+from SQLAlchemy.orm import sessionmaker
+from SQLAlchemy.orm.exc import NoResultFound
 
 
 def main():
