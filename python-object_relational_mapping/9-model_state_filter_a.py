@@ -26,13 +26,18 @@ def main():
         ),
         pool_pre_ping=True
     )
-    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
-
     session = Session()
-    for state in session.query(State).order_by(State.id).all():
-        if 'a' in state.name:
-            print("{}: {}".format(state.id, state.name))
+
+    states = (
+        session.query(State)
+        .filter(State.name.like('%a%'))
+        .order_by(State.id)
+        .all()
+    )
+    for state in states:
+        print("{}: {}".format(state.id, state.name))
+
     session.close()
 
 
