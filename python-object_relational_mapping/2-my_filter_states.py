@@ -12,9 +12,6 @@ import sys
 def main():
     """
     Lists all values in states table """
-    if len(sys.argv) != 5:
-        sys.exit()
-
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -30,10 +27,8 @@ def main():
     )
 
     cur = conn.cursor()
-    cur.execute(
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-        (searched_state,)
-    )
+    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(searched_state)
+    cur.execute(query)
     query_rows = cur.fetchall()
     for row in query_rows:
         print(row)
