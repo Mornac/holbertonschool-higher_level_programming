@@ -13,6 +13,9 @@ def main():
     as an argument
     and lists all cities of the state
     """
+    if len(sys.argv) != 5:
+        sys.exit()
+
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -31,16 +34,23 @@ def main():
     )
 
     cur = conn.cursor()
-    cur.execute(
-        "SELECT cities.name FROM cities INNER JOIN states"
-        "ON states.id=cities.state_id"
-        "WHERE states.name = %s ORDER BY cities.id ASC", (state_searched,)
-    )
+    cur.execute("""
+        SELECT cities.name FROM cities INNER JOIN states
+        ON states.id = cities.state_id
+        WHERE states.name = '{}' ORDER BY cities.id ASC
+    """.format(state_searched))
     query_rows = cur.fetchall()
-    for row in query_rows:
-        print(row)
-    cur.close()
-    conn.close()
+
+    if len(query_rows) > 0:
+        for row_num in range(len(query_rows)):
+            if row_num != len(query_rows) - 1:
+                print(query_rows[row_num][0], end=", ")
+            else:
+                print(query_rows[row_num][0])
+    else:
+        print()
+        cur.close()
+        conn.close()
 
 
 if __name__ == "__main__":
