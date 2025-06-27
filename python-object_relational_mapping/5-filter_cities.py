@@ -32,10 +32,9 @@ def main():
 
     cur = conn.cursor()
     cur.execute(
-        "SELECT cities.name FROM cities \
-        INNER JOIN states \
-        ON states.id = cities.state_id \
-        WHERE states.name = '{}' ORDER BY cities.id ASC".format(state_searched)
+        "SELECT cities.name FROM cities INNER JOIN states"
+        "ON states.id=cities.state_id"
+        "WHERE states.name = %s ORDER BY cities.id ASC", (state_searched,)
     )
     query_rows = cur.fetchall()
     for row in query_rows:
