@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module to update specific object from the database hbtn_0e_6_usa
+Module containing function updating specific object from a database.
 """
 import sys
 from model_state import Base, State

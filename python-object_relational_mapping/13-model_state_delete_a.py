@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-Module to delete specific objects from a database.
+Module containing function deleting specific objects from a database.
 """
 import sys
 from model_state import Base, State
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.exc import NoResultFound
 
 
 def main():
@@ -17,7 +19,7 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost/{}'.format(
             username,
             password,
             database
@@ -28,12 +30,11 @@ def main():
     Session = sessionmaker(bind=engine)
 
     session = Session()
+    states = session.query(State).where(State.name.contains('A'))
+    # print([state.name for state in states])
 
-    states_delete = session.query(State).where(State.name.contains('A'))
-
-    for state in states_delete:
+    for state in states:
         session.delete(state)
-
     session.commit()
     session.close()
 
