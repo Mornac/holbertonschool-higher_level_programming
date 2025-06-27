@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 
 
-def main():
+if __name__ == "__main__":
     """
     Updates a State object from a database.
     """
@@ -19,26 +19,26 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             username,
             password,
             database
         ),
         pool_pre_ping=True
     )
-    Base.metadata.create_all(engine)
+    # create a configured class
     Session = sessionmaker(bind=engine)
 
+    # create a session
     session = Session()
-    try:
-        state = session.query(State).where(State.id == 2).limit(1).one()
-    except NoResultFound:
-        print("Not found")
-    else:
-        state.name = 'New Mexico'
+
+    # Update the state
+    state_to_update = session.query(State).filter_by(id=2).first()
+
+    # Update the name of the State object
+    if state_to_update:
+        state_to_update.name = "New Mexico"
         session.commit()
+
+    # Close the session
     session.close()
-
-
-if __name__ == "__main__":
-    main()
