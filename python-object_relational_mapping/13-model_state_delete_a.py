@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 
 
-def main():
+if __name__ == "__main__":
     """
     Deletes State objects containing 'a' from a database.
     """
@@ -19,7 +19,7 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             username,
             password,
             database
@@ -37,7 +37,3 @@ def main():
         session.delete(state)
     session.commit()
     session.close()
-
-
-if __name__ == "__main__":
-    main()
