@@ -18,7 +18,7 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             username,
             password,
             database
