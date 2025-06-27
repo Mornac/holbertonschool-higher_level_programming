@@ -14,7 +14,7 @@ def main():
     Prints State object matching argument from a database.
     """
     if len(sys.argv) != 5:
-        sys.exit(1)
+        return
 
     username = sys.argv[1]
     password = sys.argv[2]
@@ -22,7 +22,7 @@ def main():
     state_searched = sys.argv[4]
 
     if "'" in state_searched:
-        sys.exit(2)
+        sys.exit()
 
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost/{}'.format(
