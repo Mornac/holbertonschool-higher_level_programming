@@ -36,8 +36,13 @@ def main():
     session = Session()
 
     try:
-        state = session.query(State).filter(State.name == state_searched)
-        .order_by(State.id).limit(1).one()
+        state = (
+            session.query(State)
+            .filter(State.name == state_searched)
+            .order_by(State.id)
+            .limit(1)
+            .one()
+        )
     except NoResultFound:
         print("Not found")
     else:
