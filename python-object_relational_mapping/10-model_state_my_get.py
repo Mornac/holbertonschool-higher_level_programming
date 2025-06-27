@@ -26,9 +26,7 @@ def main():
 
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost/{}'.format(
-            username,
-            password,
-            database
+            username, password, database
         ),
         pool_pre_ping=True
     )
@@ -43,11 +41,11 @@ def main():
             .limit(1)
             .one()
         )
+        print(state.id)
     except NoResultFound:
         print("Not found")
-    else:
-        print("{}".format(state.id))
-    session.close()
+    finally:
+        session.close()
 
 
 if __name__ == "__main__":
