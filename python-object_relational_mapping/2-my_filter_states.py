@@ -3,15 +3,11 @@
 Module that takes in an argument and displays all values
 in the states table of hbtn_0e_0_usa where name matches the argument.
 """
-# import pymysql
-# pymysql.install_as_MySQLdb()
 import MySQLdb
 import sys
 
 
 def main():
-    """
-    Lists all values in states table """
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -27,7 +23,8 @@ def main():
     )
 
     cur = conn.cursor()
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(searched_state)
+    query = "SELECT * FROM states WHERE name = " \
+        "'" + searched_state + "' ORDER BY id ASC"
     cur.execute(query)
     query_rows = cur.fetchall()
     for row in query_rows:
