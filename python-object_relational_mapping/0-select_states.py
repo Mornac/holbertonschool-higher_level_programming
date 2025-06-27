@@ -3,12 +3,15 @@
 Module that lists all states from the database hbtn_0e_0_usa
 """
 import sys
-import MySQLdb
+import pymysql
+pymysql.install_as_MySQLdb()
 
 def main():
     """
     Function that lists all states
     """
+
+
 username = sys.argv[1]
 password = sys.argv[2]
 database = sys.argv[3]
