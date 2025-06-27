@@ -12,6 +12,10 @@ def main():
     """
     Adds a State object in a database.
     """
+    if len(sys.argv) != 4:
+        print("Usage: ./11-model_state_insert.py <username> <password> <database>")
+        sys.exit(1)
+
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -31,11 +35,12 @@ def main():
     session.add(new_state)
     session.commit()
 
+    """
     state = session.query(State).where(
         State.name == "Louisiana"
     ).limit(1).one()
-
-    print("{}".format(state.id))
+    """
+    print("{}".format(new_state.id))
     session.close()
 
 
