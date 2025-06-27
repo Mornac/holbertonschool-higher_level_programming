@@ -3,9 +3,9 @@
 Module to add specific object to the database hbtn_0e_6_usa
 """
 import sys
-from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
 
 
 def main():
@@ -21,26 +21,23 @@ def main():
     database = sys.argv[3]
 
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             username,
             password,
             database
         ),
         pool_pre_ping=True
     )
-    Session = sessionmaker(bind=engine)
 
+    Session = sessionmaker(bind=engine)
     session = Session()
+
     new_state = State(name="Louisiana")
+
     session.add(new_state)
     session.commit()
 
-    """
-    state = session.query(State).where(
-        State.name == "Louisiana"
-    ).limit(1).one()
-    """
-    print("{}".format(new_state.id))
+    print(new_state.id)
     session.close()
 
 
