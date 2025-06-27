@@ -4,19 +4,16 @@ Module containing function displaying first object from a database.
 """
 import sys
 from model_state import Base, State
-from SQLAlchemy import create_engine
-from SQLAlchemy.orm import sessionmaker
-from SQLAlchemy.orm.exc import NoResultFound
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.exc import NoResultFound
 
 
 def main():
     """
     Prints the first State object from a database.
     """
-    if len(sys.argv) != 4:
-        print("Usage: ./8-model_state_fetch_first.py <username> <password> <database>")
-        sys.exit(1)
-
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
