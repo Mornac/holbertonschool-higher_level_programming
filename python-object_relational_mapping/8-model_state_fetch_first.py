@@ -1,18 +1,23 @@
 #!/usr/bin/python3
 """
-Module containing function displaying objects from a database.
+Module containing function displaying first object from a database.
 """
 import sys
 from model_state import Base, State
 
-from SQLAlchemy import create_engine
-from SQLAlchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.exc import NoResultFound
 
 
 def main():
     """
-    Lists all State objects from a database.
+    Prints the first State object from a database.
     """
+    if len(sys.argv) != 4:
+        print("Usage: ./8-model_state_fetch_first.py <username> <password> <database>")
+        sys.exit(1)
+
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -29,7 +34,11 @@ def main():
     Session = sessionmaker(bind=engine)
 
     session = Session()
-    for state in session.query(State).order_by(State.id).all():
+    try:
+        state = session.query(State).order_by(State.id).limit(1).one()
+    except NoResultFound:
+        print("Nothing")
+    else:
         print("{}: {}".format(state.id, state.name))
     session.close()
 
