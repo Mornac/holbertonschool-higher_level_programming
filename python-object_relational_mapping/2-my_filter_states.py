@@ -23,8 +23,7 @@ def main():
     )
 
     cur = conn.cursor()
-    query = "SELECT * FROM states WHERE name = " \
-        "'" + searched_state + "' ORDER BY id ASC"
+    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(searched_state)
     cur.execute(query)
     query_rows = cur.fetchall()
     for row in query_rows:
