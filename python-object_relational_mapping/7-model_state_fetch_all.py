@@ -5,8 +5,8 @@ Module containing function displaying objects from a database.
 import sys
 from model_state import Base, State
 
-from SQLAlchemy import create_engine
-from SQLAlchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
 def main():
