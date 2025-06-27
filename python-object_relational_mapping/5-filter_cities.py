@@ -16,7 +16,10 @@ def main():
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-    name = sys.argv[4]
+    state_searched = sys.argv[4]
+
+    if "'" in state_searched:
+        sys.exit()
 
     conn = MySQLdb.connect(
         host="localhost",
@@ -29,7 +32,10 @@ def main():
 
     cur = conn.cursor()
     cur.execute(
-        "SELECT * FROM cities"
+        "SELECT cities.name FROM cities \
+        INNER JOIN states \
+        ON states.id = cities.state_id \
+        WHERE states.name = '{}' ORDER BY cities.id ASC".format(state_searched)
     )
     query_rows = cur.fetchall()
     for row in query_rows:
