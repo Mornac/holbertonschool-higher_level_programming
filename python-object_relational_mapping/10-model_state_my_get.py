@@ -13,9 +13,6 @@ def main():
     """
     Prints State object matching argument from a database.
     """
-    if len(sys.argv) != 5:
-        return
-
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -30,7 +27,9 @@ def main():
         ),
         pool_pre_ping=True
     )
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
+
     session = Session()
 
     try:

@@ -28,12 +28,11 @@ def main():
         ),
         pool_pre_ping=True
     )
-
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
+
     session = Session()
-
     new_state = State(name="Louisiana")
-
     session.add(new_state)
     session.commit()
 
