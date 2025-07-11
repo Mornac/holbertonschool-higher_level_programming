@@ -1,4 +1,4 @@
-#!usr/bin/node
+#!/usr/bin/node
 const string = process.argv[2];
 if (string === undefined) {
   console.log('No argument');
