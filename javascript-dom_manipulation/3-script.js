@@ -1,8 +1,8 @@
 document.querySelector('#toggle_header').addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   if (header.classList.contains('red')) {
-    header.classList.toggle('red', 'green');
+    header.classList.toggle('green');
   } else {
-    header.classList.toggle('green', 'red');
+    header.classList.toggle('red');
   }
 });
