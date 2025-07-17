@@ -1,8 +1,9 @@
-document.querySelector('#toggle_header').addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleButton = document.querySelector('#toggle_header');
   const header = document.querySelector('header');
-  if (header.classList.contains('red')) {
+
+  toggleButton.addEventListener('click', () => {
     header.classList.toggle('green');
-  } else {
     header.classList.toggle('red');
-  }
+  });
 });
