@@ -1,5 +1,5 @@
   document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://swapi-api.hbtn.io/api/films/?format=json')
+    fetch('https://swapi-api.hbtn.io/api/people/5/?format=json'URL)
       .then((response) => {
         return response.json();
       })
