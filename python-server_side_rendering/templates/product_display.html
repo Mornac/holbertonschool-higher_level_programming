@@ -12,7 +12,7 @@
     </nav>
   {% include 'header.html' %}
     <h1> Product Display </h1>
-    {% if product %}
+    {% if products %}
       <ul>
         {% for product in products %}
           <li>Name: {{ product['name'] }}</li>
