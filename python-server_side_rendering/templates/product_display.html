@@ -13,11 +13,15 @@
   {% include 'header.html' %}
     <h1> Product Display </h1>
     {% if product %}
-  <ul>
-        <li>Name: {{ product.name }}</li>
-        <li>Price: {{ product.price }}</li>
-        <li>Description: {{ product.description }}</li>
-    </ul>
+      <ul>
+        {% for product in products %}
+          <li>Name: {{ product['name'] }}</li>
+          <li>Price: {{ product['price'] }}</li>
+          <li>Description: {{ product['description'] }}</li>
+        {% endfor %}
+      </ul>
+    {% elif message %}
+      <p>{{ message }}</p>
     {% else %}
         <p> Product not found. </p>
     {% endif %}
