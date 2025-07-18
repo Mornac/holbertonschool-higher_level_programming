@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Product Display </title>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/items">Items</a>
+    <a href="/about">About</a>
+  <a href="/contact">Contact</a>
+    </nav>
+  {% include 'header.html' %}
+    <h1> Product Display </h1>
+    {% if product %}
+  <ul>
+        <li>Name: {{ product.name }}</li>
+        <li>Price: {{ product.price }}</li>
+        <li>Description: {{ product.description }}</li>
+    </ul>
+    {% else %}
+        <p> Product not found. </p>
+    {% endif %}
+    {% include 'footer.html' %}
+</body>
+</html>
