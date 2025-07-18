@@ -5,7 +5,7 @@ import csv
 
 app = Flask(__name__)
 
-def json_file(filephath):
+def json_file(filepath):
     with open(filepath, 'r') as file:
         return json.load(file)
 
