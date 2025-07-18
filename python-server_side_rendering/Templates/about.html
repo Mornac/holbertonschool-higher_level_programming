@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <header>
-            <h1> My Flask App </h1>
-        </header>
-        <header>
-            <h1> About Us </h1>
-            <p> This page contents the description of the task </p>
-        </header>
+    <title> About Us </title>
     </head>
-    <footer>
-        <p> &copy; 2024 My Flask App </p> 
-    </footer>
+    <body>
+        {% include 'header.html' %}
+        <h1> About Us </h1>
+        <p> This page contents the description of the task </p>
+        {% include 'footer.html' %}
+    </body>
 </html>
